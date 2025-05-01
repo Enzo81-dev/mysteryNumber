@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>FlaskGPT</title>
-    <link href="../static/dist/css/output.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='dist/css/output.css') }}">
 </head>
 <body>
 
     <h1 class="text-3xl font-bold underline">Hello, world!</h1>
 
+<script src="{{ url_for('static', filename='dist/js/script.js') }}"></script>
 </body>
 </html>
