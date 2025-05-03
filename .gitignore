@@ -8,7 +8,7 @@ node_modules/
 *.log
 
 # Build output
-dist/
+dist/css/
 build/
 
 # Base de données locales
@@ -35,3 +35,6 @@ test-results/
 *.tar.gz
 *.zip
 *.tar.bz2
+
+# ubuntu
+venv/
