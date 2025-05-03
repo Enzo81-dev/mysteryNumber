@@ -23,7 +23,7 @@ npm-debug.log
 *~
 
 # Clés et secrets
-*.env
+.env.local
 id_rsa
 id_rsa.pub
 

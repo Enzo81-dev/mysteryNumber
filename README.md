@@ -10,6 +10,41 @@
    git clone https://github.com/ton-utilisateur/flaskgpt.git
    cd flaskgpt
 
+2. Créer une Base de données (BDD)
+    installer MySql
+    se connecter
+    mysql>SHOW DATABASES;
+    mysql>CREATE DATABASE mysteryNumber;
+    mysql>USE mysteryNumber;
+    mysql>CREATE TABLE mysteryNumber (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        mysteryNumber INT
+    );
+    mysql>SHOW TABLES;
+    mysql>DESCRIBE mysteryNumber;
+    mysql>CREATE TABLE bestScore (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        trials INT,
+        pseudo VARCHAR(100),
+        date DATE
+    );
+    mysql>SHOW TABLES;
+    mysql>DESCRIBE bestScore;
+
+    ajouter des données fixtives :
+    mysql>INSERT INTO mysteryNumber (mysteryNumber) VALUES (81);
+    mysql>INSERT INTO bestScore (trials, pseudo, date) VALUES (100, 'Xav', NOW());
+
+    voir les données ajoutées :
+    mysql>SELECT * FROM mysteryNumber;
+    mysql>SELECT * FROM bestScore;
+
+3. 📦 Installer les bibliothèques nécessaires
+    pip install flask
+    pip install flask-mysqldb      sur ubuntu lancer avant pip install flask-mysqldb : sudo apt-get install libmysqlclient-dev
+    pip install python-dotenv
+
+
 ## 🔧 Installation
 
 1. Installer les dépendances :
@@ -22,6 +57,7 @@
      npm run watch
 
 ##  ▶️ Lancer le serveur flask
+
     Windows => se placer dans app.py => ▶ Run Python file
     Ubuntu => 
         ```bash
