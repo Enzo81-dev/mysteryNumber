@@ -28,49 +28,39 @@ mysql = MySQL(app)
 # mysql.connection.commit()
 # cur.close()
 
-best_score = None  # Variable en mémoire
+nombreMystere = None  # Variable en mémoire
+trialNumber = 0
 
 @app.route("/")
 def home():
-    global best_score
-    best_score = random.randint(1, 100)
+    global nombreMystere
+    nombreMystere = random.randint(1, 100)
 
     
     return render_template('index.html')
 
 @app.route('/prompt', methods=['POST'])
 def prompt():
-    global best_score
+    global nombreMystere
+    global trialNumber
 
-    trials = request.json['prompt']
-    if trials[-1].isdigit():
-        trial = int(trials[-1])
-            
-    # Code réalisé par Enzo
-    
-    # nombreEssai = 0
-    # import random
-    # nombreMystere = random.randint(1, 100)
-    # while True:
-    #     print('Devine le nombre')
-    #     nombreEssai = nombreEssai + 1
-    #     nombreEssaye = input()
-    #     if nombreEssaye.isdigit():
-    #         nombreEssaye = int(nombreEssaye)
-    #         if nombreEssaye == nombreMystere:
-    #             print("Bravo, tu as trouvé le nombre")
-    #             print("le nombre d'nombreEssai est de ", end = "")
-    #             print(nombreEssai)
-    #             break
-    #         elif nombreEssaye < nombreMystere:
-    #             print("Trop petit.")
-    #         else:
-    #             print("Trop grand.")
-    #     else:
-    #         print(nombreEssaye + " n'est pas un nombre")
+    trial = request.json['prompt']
+    if trial.isdigit():
+        trial = int(trial)
+        trialNumber = trialNumber + 1
+        nombreEssaye = trial
+        if nombreEssaye == nombreMystere:
+            message = "Bravo, tu as trouvé le nombre"
+            # print("le nombre d'essai est de ", end = "")
+            # print(trialNumber)
+        elif nombreEssaye < nombreMystere:
+            message = "Trop petit."
+        else:
+            message = "Trop grand."
+    else:
+        message = nombreEssaye + " n'est pas un nombre"
 
-    messages = 'essai'  # Exemple de messages
-    return jsonify({'messages': messages})
+    return jsonify({'message': message})
 
 if __name__ == '__main__':
     app.run(debug=True, host='127.0.0.1', port=5000)

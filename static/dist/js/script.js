@@ -15,7 +15,7 @@ function _cloneAnswerBlock() {
     const template = document.querySelector('#chat-template');
     const clone = template.cloneNode(true);
     clone.id = "";
-    output.appendChild(clone);
+    output.prepend(clone);
     clone.classList.remove("hidden")
     return clone.querySelector(".message");
 }
@@ -49,13 +49,12 @@ document.addEventListener("DOMContentLoaded", () => {
         sendIcon.classList.add("hidden");
     
         const prompt = form.elements.prompt.value;
-        addToLog(prompt);
     
         try {
             const data = await fetchPromptResponse(prompt);  // Nous attendons maintenant directement l'objet JSON
             
             // Ici, `data` est déjà un objet JSON, donc pas besoin de vérifier `response.ok` ni d'utiliser `response.json()`
-            addToLog(data.messages);  // Affiche la clé `messages` dans le log
+            addToLog(data.message);  // Affiche la clé `messages` dans le log
 
         } catch (error) {
             console.error('Une erreur est survenue lors de la requête:', error);  // Capture les erreurs de type fetch ou de réseau
