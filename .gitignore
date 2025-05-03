@@ -8,7 +8,7 @@ node_modules/
 *.log
 
 # Build output
-dist/css/
+static/dist/css/
 build/
 
 # Base de données locales
