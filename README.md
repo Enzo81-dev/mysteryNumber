@@ -28,7 +28,18 @@
     mysql>DESCRIBE bestScore;
 
     ajouter des données fixtives :
-    mysql>INSERT INTO bestScore (mysteryNumber, trials, pseudo, date) VALUES (100, 21, 'Enzo', NOW());
+    mysql>INSERT INTO bestScore (mysteryNumber, trials, pseudo, date)
+            VALUES 
+            (100, 25, 'Zoé', NOW()),
+            (42, 3, 'Alice', NOW()),
+            (17, 4, 'Bob', NOW()),
+            (99, 5, 'Charlie', NOW()),
+            (23, 6, 'Dana', NOW()),
+            (58, 7, 'Eli', NOW()),
+            (74, 8, 'Lina', NOW()),
+            (12, 2, 'Max', NOW()),
+            (85, 9, 'Sophia', NOW()),
+            (61, 10, 'Lucas', NOW());
 
     voir les données ajoutées :
     mysql>SELECT * FROM bestScore;

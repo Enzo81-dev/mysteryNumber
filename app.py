@@ -63,7 +63,13 @@ def prompt():
 
 @app.route("/bestscore")
 def bestScore():
-    return render_template('bestscore.html')
+
+    cur = mysql.connection.cursor()
+    cur.execute("SELECT mysteryNumber, pseudo, trials, date FROM bestScore ORDER BY trials ASC")
+    bestScores = cur.fetchall()
+    cur.close()
+
+    return render_template('bestscore.html', bestScores=bestScores)
 
 if __name__ == '__main__':
     app.run(debug=True, host='127.0.0.1', port=5000)
