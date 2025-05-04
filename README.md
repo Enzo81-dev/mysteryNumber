@@ -14,16 +14,9 @@
     installer MySql
     se connecter
     mysql>SHOW DATABASES;
-    mysql>CREATE DATABASE mysteryNumber;
-    mysql>USE mysteryNumber;
-    mysql>CREATE TABLE mysteryNumber (
-        id INT AUTO_INCREMENT PRIMARY KEY,
-        mysteryNumber INT
-    );
-    mysql>SHOW TABLES;
-    mysql>DESCRIBE mysteryNumber;
     mysql>CREATE TABLE bestScore (
         id INT AUTO_INCREMENT PRIMARY KEY,
+        mysteryNumber INT,
         trials INT,
         pseudo VARCHAR(100),
         date DATE
@@ -32,16 +25,15 @@
     mysql>DESCRIBE bestScore;
 
     ajouter des données fixtives :
-    mysql>INSERT INTO mysteryNumber (mysteryNumber) VALUES (81);
-    mysql>INSERT INTO bestScore (trials, pseudo, date) VALUES (100, 'Xav', NOW());
+    mysql>INSERT INTO bestScore (mysteryNumber, trials, pseudo, date) VALUES (100, 21, 'Xav', NOW());
 
     voir les données ajoutées :
-    mysql>SELECT * FROM mysteryNumber;
     mysql>SELECT * FROM bestScore;
 
 3. 📦 Installer les bibliothèques nécessaires
     pip install flask
-    pip install flask-mysqldb      sur ubuntu lancer avant pip install flask-mysqldb : sudo apt-get install libmysqlclient-dev
+        sur ubuntu lancer avant pip install flask-mysqldb : sudo apt-get install libmysqlclient-dev
+    pip install flask-mysqldb
     pip install python-dotenv
 
 
