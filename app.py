@@ -34,7 +34,9 @@ trialNumber = 0
 @app.route("/")
 def home():
     global nombreMystere
+    global trialNumber
     nombreMystere = random.randint(1, 100)
+    trialNumber = 0
 
     return render_template('index.html')
 
@@ -50,8 +52,10 @@ def prompt():
         nombreEssaye = trial
         if nombreEssaye == nombreMystere:
             message = "Bravo, tu as trouvé le nombre mystère !"
-            # print("le nombre d'essai est de ", end = "")
-            # print(trialNumber)
+            cur = mysql.connection.cursor()
+            cur.execute("INSERT INTO bestScore (mysteryNumber, pseudo, trials, date) VALUES (%s, %s, %s, NOW())", (nombreMystere, 'Enzo13', trialNumber))
+            mysql.connection.commit()
+            cur.close()
         elif nombreEssaye < nombreMystere:
             message = str(nombreEssaye) + " est trop petit."
         else:

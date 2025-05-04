@@ -52,7 +52,7 @@ document.addEventListener("DOMContentLoaded", () => {
     
         try {
             const data = await fetchPromptResponse(prompt);  // Nous attendons maintenant directement l'objet JSON
-            
+            document.getElementById("prompt").value = "";
             // Ici, `data` est déjà un objet JSON, donc pas besoin de vérifier `response.ok` ni d'utiliser `response.json()`
             addToLog(data.message);  // Affiche la clé `messages` dans le log
 
