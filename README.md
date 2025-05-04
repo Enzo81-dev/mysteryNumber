@@ -7,13 +7,16 @@
 
 1. Clone le dépôt :
    ```bash
-   git clone https://github.com/ton-utilisateur/flaskgpt.git
-   cd flaskgpt
+   git clone https://github.com/ton-utilisateur/mysteryNumber.git
+   cd mysteryNumber
 
 2. Créer une Base de données (BDD)
     installer MySql
     se connecter
+    mysql -u root -p
+    mysql>CREATE DATABASE mysterynumber;
     mysql>SHOW DATABASES;
+    mysql>USE mysterynumber;
     mysql>CREATE TABLE bestScore (
         id INT AUTO_INCREMENT PRIMARY KEY,
         mysteryNumber INT,
@@ -25,7 +28,7 @@
     mysql>DESCRIBE bestScore;
 
     ajouter des données fixtives :
-    mysql>INSERT INTO bestScore (mysteryNumber, trials, pseudo, date) VALUES (100, 21, 'Xav', NOW());
+    mysql>INSERT INTO bestScore (mysteryNumber, trials, pseudo, date) VALUES (100, 21, 'Enzo', NOW());
 
     voir les données ajoutées :
     mysql>SELECT * FROM bestScore;

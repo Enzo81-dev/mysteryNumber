@@ -18,13 +18,13 @@ mysql = MySQL(app)
 
 # exemple de code pour récuperer des données depuis le BDD
 # cur = mysql.connection.cursor()
-# cur.execute("SELECT pseudo, trials, date FROM bestScore ORDER BY trials ASC LIMIT 5")
+# cur.execute("SELECT mysteryNumber, pseudo, trials, date FROM bestScore ORDER BY trials ASC LIMIT 5")
 # scores = cur.fetchall()
 # cur.close()
 
 # exemple de code pour enregistrer des données en BDD
 # cur = mysql.connection.cursor()
-# cur.execute("INSERT INTO mysteryNumber (mysteryNumber) VALUES (%s)", (trial,))
+# cur.execute("INSERT INTO bestScore (mysteryNumber) VALUES (%s)", (trial,))
 # mysql.connection.commit()
 # cur.close()
 
@@ -36,7 +36,6 @@ def home():
     global nombreMystere
     nombreMystere = random.randint(1, 100)
 
-    
     return render_template('index.html')
 
 @app.route('/prompt', methods=['POST'])
@@ -50,17 +49,21 @@ def prompt():
         trialNumber = trialNumber + 1
         nombreEssaye = trial
         if nombreEssaye == nombreMystere:
-            message = "Bravo, tu as trouvé le nombre"
+            message = "Bravo, tu as trouvé le nombre mystère !"
             # print("le nombre d'essai est de ", end = "")
             # print(trialNumber)
         elif nombreEssaye < nombreMystere:
-            message = "Trop petit."
+            message = str(nombreEssaye) + " est trop petit."
         else:
-            message = "Trop grand."
+            message = str(nombreEssaye) + " est trop grand."
     else:
-        message = nombreEssaye + " n'est pas un nombre"
+        message = str(nombreEssaye) + " n'est pas un nombre."
 
     return jsonify({'message': message})
+
+@app.route("/bestscore")
+def bestScore():
+    return render_template('bestscore.html')
 
 if __name__ == '__main__':
     app.run(debug=True, host='127.0.0.1', port=5000)
