@@ -20,13 +20,13 @@ function _cloneAnswerBlock() {
     return clone.querySelector(".message");
 }
 
-async function fetchPromptResponse(prompt) {
+async function fetchPromptResponse(prompt, pseudo) {
     const response = await fetch("/prompt", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
         },
-        body: JSON.stringify({ prompt }),
+        body: JSON.stringify({ prompt, pseudo }),
     });
 
     // Si la réponse est au format JSON, on utilise response.json()
@@ -49,9 +49,11 @@ document.addEventListener("DOMContentLoaded", () => {
         sendIcon.classList.add("hidden");
     
         const prompt = form.elements.prompt.value;
+
+        const pseudo = document.querySelector("#pseudo").value;
     
         try {
-            const data = await fetchPromptResponse(prompt);  // Nous attendons maintenant directement l'objet JSON
+            const data = await fetchPromptResponse(prompt, pseudo);  // Nous attendons maintenant directement l'objet JSON
             document.getElementById("prompt").value = "";
             // Ici, `data` est déjà un objet JSON, donc pas besoin de vérifier `response.ok` ni d'utiliser `response.json()`
             addToLog(data.message);  // Affiche la clé `messages` dans le log

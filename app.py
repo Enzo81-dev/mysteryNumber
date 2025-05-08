@@ -46,6 +46,7 @@ def prompt():
     global trialNumber
 
     trial = request.json['prompt']
+    pseudo = request.json['pseudo']
     if trial.isdigit():
         trial = int(trial)
         trialNumber = trialNumber + 1
@@ -53,7 +54,7 @@ def prompt():
         if nombreEssaye == nombreMystere:
             message = "Bravo, tu as trouvé le nombre mystère !"
             cur = mysql.connection.cursor()
-            cur.execute("INSERT INTO bestScore (mysteryNumber, pseudo, trials, date) VALUES (%s, %s, %s, NOW())", (nombreMystere, 'Enzo13', trialNumber))
+            cur.execute("INSERT INTO bestScore (mysteryNumber, pseudo, trials, date) VALUES (%s, %s, %s, NOW())", (nombreMystere, pseudo, trialNumber))
             mysql.connection.commit()
             cur.close()
         elif nombreEssaye < nombreMystere:
