@@ -47,6 +47,8 @@ def prompt():
 
     trial = request.json['prompt']
     pseudo = request.json['pseudo']
+    if pseudo == '':
+        pseudo = 'sans pseudo'
     if trial.isdigit():
         trial = int(trial)
         trialNumber = trialNumber + 1
